@@ -2,13 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1 {
     text-align: center;
-    margin-top: 5rem;
-    margin-bottom: 2rem;
+    margin: 5rem 48px 2rem;
+    font-size: 28px;
 }
 
 p{
@@ -17,62 +17,29 @@ p{
     color: #C4C4C4;
 }
 
-img.male-inactive{
-    border: solid #FF9678 2px;
-    border-radius: 0.3rem;
-    width: 9rem;
-    padding: 1rem;
+.give-acces-button{
+    display: block;
+    margin: 6rem auto 0;
+    border: 2px #FF9678 solid;
+    background-color: white;
+    border-radius: 20px;
+    color: #FF9678;
+    padding: 15px 60px;
 }
 
-img.female-inactive{
-    border: solid #FF9678 2px;
-    border-radius: 0.3rem;
-    width: 9rem;
-    padding: 1rem;
+.no-acces-button{
+    display: block;
+    margin: 1rem auto 3rem;
+    color: #C4C4C4;
+    background-color: white;
+    border: none;
+    border-bottom: 1.5px #C4C4C4 solid;
 }
-
-img.unicorn-inactive{
-    border: solid #FF9678 2px;
-    border-radius: 0.3rem;
-    width: 9rem;
-    padding: 1rem;
-}
-
-/* HIDE RADIO */
-[type=radio] { 
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* IMAGE STYLES */
-  [type=radio] + img {
-    cursor: pointer;
-  }
-  
-  /* CHECKED STYLES */
-  [type=radio]:checked + img {
-    outline: 2px solid #f00;
-  }
 
 form{
     margin: 0 3rem;
     text-align: center;
-}
-
-a:link, a:visited {
-    color: blue;
-}
-
-input[type=submit] {
-    background-color: #8A2BE1;
-    border-radius: 0.3rem;
-    width: 80%;
-    color: white;
-    padding: 0.6rem;
-    border: none;
-    cursor: pointer;
+    height: 100%;
 }
 
 a.wachtwoordVergeten{
@@ -92,17 +59,25 @@ a.wachtwoordVergeten{
     text-decoration: none;
 }
 
-.create-account{
-    text-align: center;
-    position: relative;
-    top: 3rem;
+a:link, a:visited {
+    color: blue;
+}
+
+input[type=submit] {
+    background-color: #8A2BE1;
+    border-radius: 0.3rem;
+    width: 80%;
+    color: white;
+    padding: 0.6rem;
+    border: none;
+    cursor: pointer;
 }
 
 .invoer-veld{
     width: 80%;
     position: relative;
     height: 50px;
-    margin: 2rem auto;
+    margin: 2rem;
     overflow: hidden; /*Alles dat buiten het element staat wordt niet weergeven, dit is voor de lijn aan de onderkant*/
 }
 
@@ -145,8 +120,8 @@ a.wachtwoordVergeten{
 }
 
 /*Elke keer wanneer je focust op de input wordt deze stijl toegepast aan label dankzij de +*/
-.invoer-veld input:focus + .labelAnimation .spanAnimation, .invoer-veld input:valid + .labelAnimation .spanAnimation, .invoer-veld input:invalid + .labelAnimation .spanAnimation{
-    transform: translateY(-150%);
+.invoer-veld input:focus + .labelAnimation .spanAnimation, .invoer-veld input:valid + .labelAnimation .spanAnimation{
+    transform: translateY(-100%);
     font-size: 14px;
     color: blueviolet;
 }
@@ -154,5 +129,3 @@ a.wachtwoordVergeten{
 .invoer-veld input:focus + .labelAnimation::after, .invoer-veld input:valid + .labelAnimation::after{
     width: 100%;
 }
-
-/*createAccount2 Styling*/
