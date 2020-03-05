@@ -5,10 +5,26 @@
     font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1 {
+body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+main{
+    margin: 0 33px;
+}
+
+legend {
     text-align: center;
-    margin: 5rem 48px 2rem;
     font-size: 28px;
+    font-weight: bold;
+    padding: 5rem 0 1rem;
+}
+
+fieldset {
+    border: none;
+    height: 100vh;
 }
 
 p{
@@ -36,12 +52,6 @@ p{
     border-bottom: 1.5px #C4C4C4 solid;
 }
 
-form{
-    margin: 0 3rem;
-    text-align: center;
-    height: 100%;
-}
-
 a.wachtwoordVergeten{
     text-align: center;
     display: block;
@@ -61,16 +71,6 @@ a.wachtwoordVergeten{
 
 a:link, a:visited {
     color: blue;
-}
-
-input[type=submit] {
-    background-color: #8A2BE1;
-    border-radius: 0.3rem;
-    width: 80%;
-    color: white;
-    padding: 0.6rem;
-    border: none;
-    cursor: pointer;
 }
 
 .invoer-veld{

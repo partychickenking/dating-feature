@@ -1,0 +1,85 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./inex.css">
+    <title>createAccount</title>
+</head>
+
+<body>
+    <main>
+        <form action="/action_page.php">
+            <fieldset class="register-1">
+                <legend>Welcome!</legend>
+                <p>First, we would like to have some contact information</p>
+                <div class="invoer-veld">
+                    <input type="text" name="naam" required>
+                    <label for="naam" class="labelAnimation">
+                        <span class="spanAnimation">Gebruikernaam</span>
+                    </label>
+                </div>
+
+                <div class="invoer-veld">
+                    <input type="email" name="email" required>
+                    <label for="email" class="labelAnimation">
+                        <span class="spanAnimation">E-mail</span>
+                    </label>
+                </div>
+
+                <div class="invoer-veld">
+                    <input type="password" name="ww" required>
+                    <label for="ww" class="labelAnimation">
+                        <span class="spanAnimation">Wachtwoord</span>
+                    </label>
+                </div>
+                <button>Next step</button>
+            </fieldset>
+
+            <fieldset class="register-2">
+                <legend>May we have acces to your location?</legend>
+                <p>Your location will only be used to find matches close to you.</p>
+                <div>
+                    <button class="give-acces-button">Yes give acces</button>
+                    <button class="no-acces-button">No I'd rather not</button>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>We would like to know a bit more about you</legend>
+                <label for="">Gender</label>
+                <input type="radio">
+                <input type="radio">
+                <input type="radio">
+
+                <label for="">How old are you?</label>
+                <input type="range">
+                <button>Next step</button>
+            </fieldset>
+
+            <fieldset>
+                <legend>We would like to know a bit more about you</legend>
+                <label for="">What is your sexuality?</label>
+                <input type="radio" placeholder="Straight">
+                <input type="radio" placeholder="Homosexual">
+                <input type="radio" placeholder="Bisexual">
+
+                <label for="">What genre do you watch?</label>
+                <input type="checkbox">
+
+                <label for="">What do you like to listen to?</label>
+                <input type="checkbox">
+                <button>Next step</button>
+            </fieldset>
+
+            <fieldset>
+                <legend>Upload some cute pictures of you</legend>
+                <input type="file">
+                <input type="submit">
+            </fieldset>
+        </form>
+    </main>
+    <script src="index.js"></script>
+</body>
+
+</html>
