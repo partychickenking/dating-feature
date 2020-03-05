@@ -1,0 +1,189 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>register</title>
+</head>
+
+<body>
+    <main>
+        <form action="/action_page.php">
+            <fieldset class="register-1">
+                <legend>Welcome!</legend>
+                <p>First, we would like to have some contact information</p>
+
+                <div class="invoer-veld">
+                    <input type="text" name="naam" required>
+                    <label for="naam" class="labelAnimation">
+                        <span class="spanAnimation">Gebruikernaam</span>
+                    </label>
+                </div>
+
+                <div class="invoer-veld">
+                    <input type="email" name="email" required>
+                    <label for="email" class="labelAnimation">
+                        <span class="spanAnimation">E-mail</span>
+                    </label>
+                </div>
+
+                <div class="invoer-veld">
+                    <input type="password" name="ww" required>
+                    <label for="ww" class="labelAnimation">
+                        <span class="spanAnimation">Wachtwoord</span>
+                    </label>
+                </div>
+
+            </fieldset>
+
+            <fieldset class="register-2">
+                <legend>May we have acces to your location?</legend>
+                <p>Your location will only be used to find matches close to you.</p>
+                <div class="two-column">
+                    <label class="container">Yes, give acces
+                        <input type="radio" name="radio">
+                        <span class="custom-radio-btn"></span>
+                    </label>
+                    <label class="container">No, I'd rather not
+                        <input type="radio" name="radio">
+                        <span class="custom-radio-btn"></span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="register-3">
+                <legend>We would like to know a bit more about you</legend>
+                <h2>Gender</h2>
+                <div class="two-column">
+                    <label class="container">Male
+                        <input type="radio" name="Gender">
+                        <span class="custom-radio-btn"></span>
+                    </label>
+
+                    <label class="container">Female
+                        <input type="radio" name="Gender">
+                        <span class="custom-radio-btn"></span>
+                    </label>
+
+                    <label class="container">Other
+                        <input type="radio" name="Gender">
+                        <span class="custom-radio-btn"></span>
+                    </label>
+                </div>
+                <h2>How old are you?</h2>
+                <label>Age
+                    <input type="number" min="18" max="40">
+                </label>
+            </fieldset>
+
+            <fieldset class="register-4">
+                <legend>We would like to know a bit more about you</legend>
+                <h2>What's your sexuality?</h2>
+                <div class="two-column">
+                    <label class="container">Straight
+                        <input type="radio" name="sexuality">
+                        <span class="custom-radio-btn"></span>
+                    </label>
+
+                    <label class="container">Gay
+                        <input type="radio" name="sexuality">
+                        <span class="custom-radio-btn"></span>
+                    </label>
+
+                    <label class="container">Bisexual
+                        <input type="radio" name="sexuality">
+                        <span class="custom-radio-btn"></span>
+                    </label>
+
+                    <label class="container">Other
+                        <input type="radio" name="sexuality">
+                        <span class="custom-radio-btn"></span>
+                    </label>
+                </div>
+
+                <h2>What genre do you like to watch?</h2>
+                <div class="two-column">
+                    <label class="container">Action
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Comedy
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Horror
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Fantasy
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Thriller
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Romantic
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Drama
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Docu
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                </div>
+                <h2>What do you like to listen to?</h2>
+                <div class="two-column">
+                    <label class="container">Pop
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Hip hop
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Rock
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Dance
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Rap
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Jazz
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Metal
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                    <label class="container">Classic
+                        <input type="checkbox">
+                        <span class="custom-checkbox"></span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset class="register-5">
+                <legend>Upload some cute pictures of you</legend>
+                <label for="file-upload">
+                    <input type="file" class="custom-file-input">
+                </label>
+                <input type="submit">
+            </fieldset>
+        </form>
+    </main>
+    <script src="index.js"></script>
+</body>
+
+</html>
