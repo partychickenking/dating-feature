@@ -458,20 +458,38 @@ input[type="submit"] {
 }
 
 @media screen and (min-width: 700px) {
-    .two-column{
+    .grid-column{
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1200px) {
     body{
         background: url(./Images/couple-bg.svg) no-repeat center center fixed;
         background-size: cover;
     }
 
     form{
-        width: 633px;
+        width: 33%;
+        background-color: white;
+    }
+
+    legend{
+        font-size: 18px;
+        padding-bottom: 0;
+    }
+
+    .invoer-veld{
+        margin: 0.4rem auto;
+    }
+
+    .invoer-veld input:focus+.labelAnimation .spanAnimation, .invoer-veld input:valid+.labelAnimation .spanAnimation {
+        font-size: 10px;
+    }
+
+    .register-2, .register-3 legend, .register-4 legend{
+        display: none;
     }
 
     main{
@@ -486,5 +504,21 @@ input[type="submit"] {
 
     input[type="text"]{
         text-align: left;
+    }
+
+    .grid-column{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    h2{
+        font-size: 1rem;
+    }
+
+    legend{
+        padding: 1.2rem 0rem 1rem;
+    }
+
+    .register-2 .container, .register-3 .container, .register-4 .container{
+        font-size: 16px;
     }
 }
