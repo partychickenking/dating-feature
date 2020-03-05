@@ -1,123 +1,112 @@
-/*ALGEMENE STYLING*/
-
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-legend {
-    font-weight: bold;
-    font-size: 2rem;
+h1 {
     text-align: center;
-    padding: 3rem 0 1rem;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
 }
 
-fieldset {
-    border: none;
-    margin: auto;
-    width: 90%;
-}
-
-p {
+p{
     text-align: center;
+    margin: 0 3rem;
     color: #C4C4C4;
 }
 
-h2 {
-    margin: 1.5rem 0 1rem;
+img.male-inactive{
+    border: solid #FF9678 2px;
+    border-radius: 0.3rem;
+    width: 9rem;
+    padding: 1rem;
 }
 
-/*REUSABLE STYLES*/
-
-/*BEGIN OF CUSTOM CHECKBOX*/
-
-.container {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+img.female-inactive{
+    border: solid #FF9678 2px;
+    border-radius: 0.3rem;
+    width: 9rem;
+    padding: 1rem;
 }
 
-/* Hides the browser's default checkbox */
+img.unicorn-inactive{
+    border: solid #FF9678 2px;
+    border-radius: 0.3rem;
+    width: 9rem;
+    padding: 1rem;
+}
 
-.container input {
+/* HIDE RADIO */
+[type=radio] { 
     position: absolute;
     opacity: 0;
-    cursor: pointer;
-    height: 0;
     width: 0;
+    height: 0;
+  }
+  
+  /* IMAGE STYLES */
+  [type=radio] + img {
+    cursor: pointer;
+  }
+  
+  /* CHECKED STYLES */
+  [type=radio]:checked + img {
+    outline: 2px solid #f00;
+  }
+
+form{
+    margin: 0 3rem;
+    text-align: center;
 }
 
-/* Create a custom checkbox */
-
-.custom-checkbox {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
+a:link, a:visited {
+    color: blue;
 }
 
-/* On mouse-over, add a grey background color */
-
-.container:hover input~.custom-checkbox {
-    background-color: #ccc;
+input[type=submit] {
+    background-color: #8A2BE1;
+    border-radius: 0.3rem;
+    width: 80%;
+    color: white;
+    padding: 0.6rem;
+    border: none;
+    cursor: pointer;
 }
 
-/* When the checkbox is checked, add a blue background */
-
-.container input:checked~.custom-checkbox {
-    background-color: blueviolet;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-
-.custom-checkbox:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the checkmark when checked */
-
-.container input:checked~.custom-checkbox:after {
+a.wachtwoordVergeten{
+    text-align: center;
     display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    font-size: smaller;
 }
 
-/* Style the checkmark/indicator */
-
-.container .custom-checkbox:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+.create-account-span{
+    width: 100%;
 }
 
-/*STYLING VOOR REGISTER-1*/
-.invoer-veld {
+.create-account-a{
+    text-decoration: none;
+}
+
+.create-account{
+    text-align: center;
+    position: relative;
+    top: 3rem;
+}
+
+.invoer-veld{
     width: 80%;
     position: relative;
     height: 50px;
     margin: 2rem auto;
-    overflow: hidden;
-    /*Alles dat buiten het element staat wordt niet weergeven, dit is voor de lijn aan de onderkant*/
+    overflow: hidden; /*Alles dat buiten het element staat wordt niet weergeven, dit is voor de lijn aan de onderkant*/
 }
 
-.invoer-veld input {
+.invoer-veld input{
     width: 100%;
     height: 100%;
     padding-top: 20px;
@@ -125,20 +114,18 @@ h2 {
     outline: none;
 }
 
-.invoer-veld .labelAnimation {
+.invoer-veld .labelAnimation{
     position: absolute;
     bottom: 0px;
     left: 0%;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    /* zo staat de label niet voor de input*/
+    pointer-events: none; /* zo staat de label niet voor de input*/
     border-bottom: 1px solid black;
 }
 
 /*After kan niet worden gebruikt op de input, omdat je hier geen content aan kan toevoegen*/
-
-.invoer-veld .labelAnimation::after {
+.invoer-veld .labelAnimation::after{
     content: "";
     position: absolute;
     left: 0px;
@@ -150,7 +137,7 @@ h2 {
     transition: all 0.3s ease;
 }
 
-.spanAnimation {
+.spanAnimation{
     position: absolute;
     bottom: 5px;
     left: 0;
@@ -158,333 +145,14 @@ h2 {
 }
 
 /*Elke keer wanneer je focust op de input wordt deze stijl toegepast aan label dankzij de +*/
-
-.invoer-veld input:focus+.labelAnimation .spanAnimation, .invoer-veld input:valid+.labelAnimation .spanAnimation {
-    transform: translateY(-100%);
+.invoer-veld input:focus + .labelAnimation .spanAnimation, .invoer-veld input:valid + .labelAnimation .spanAnimation, .invoer-veld input:invalid + .labelAnimation .spanAnimation{
+    transform: translateY(-150%);
     font-size: 14px;
     color: blueviolet;
 }
 
-.invoer-veld input:focus+.labelAnimation::after, .invoer-veld input:valid+.labelAnimation::after {
+.invoer-veld input:focus + .labelAnimation::after, .invoer-veld input:valid + .labelAnimation::after{
     width: 100%;
 }
 
-/*STYLING VOOR REGISTER-2*/
-
-/* The container */
-
-.register-2 .container {
-    display: block;
-    position: relative;
-    width: 80%;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Hide the browser's default radio button */
-
-.register-2 .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-/* Create a custom radio button */
-
-.custom-radio-btn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-
-.register-2 .container:hover input~.custom-radio-btn {
-    background-color: #c4c4c4;
-}
-
-/* When the radio button is checked, add a blue background */
-
-.register-2 .container input:checked~.custom-radio-btn {
-    background-color: blueviolet;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-
-.custom-radio-btn:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-
-.register-2 .container input:checked~.custom-radio-btn:after {
-    display: block;
-}
-
-/* Style the indicator (dot/circle) */
-
-.register-2 .container .custom-radio-btn:after {
-    top: 9px;
-    left: 9px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: white;
-}
-
-.register-2 p {
-    margin-bottom: 2rem;
-}
-
-/*STYLING FOR REGISTER-3*/
-
-.register-3 .container {
-    display: block;
-    position: relative;
-    width: 80%;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Hide the browser's default radio button */
-
-.register-3 .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-/* Create a custom radio button */
-
-.custom-radio-btn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-
-.register-3 .container:hover input~.custom-radio-btn {
-    background-color: #c4c4c4;
-}
-
-/* When the radio button is checked, add a blue background */
-
-.register-3 .container input:checked~.custom-radio-btn {
-    background-color: blueviolet;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-
-.custom-radio-btn:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-
-.register-3 .container input:checked~.custom-radio-btn:after {
-    display: block;
-}
-
-/* Style the indicator (dot/circle) */
-
-.register-3 .container .custom-radio-btn:after {
-    top: 9px;
-    left: 9px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: white;
-}
-
-.register-3 input[type="number"] {
-    outline: blueviolet;
-}
-
-/*STYLING FOR REGISTER-4*/
-
-.register-4 .container {
-    display: block;
-    position: relative;
-    width: 80%;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Hide the browser's default radio button */
-
-.register-4 .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-/* Create a custom radio button */
-
-.custom-radio-btn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-
-.register-4 .container:hover input~.custom-radio-btn {
-    background-color: #c4c4c4;
-}
-
-/* When the radio button is checked, add a blue background */
-
-.register-4 .container input:checked~.custom-radio-btn {
-    background-color: blueviolet;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-
-.custom-radio-btn:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-
-.register-4 .container input:checked~.custom-radio-btn:after {
-    display: block;
-}
-
-/* Style the indicator (dot/circle) */
-
-.register-4 .container .custom-radio-btn:after {
-    top: 9px;
-    left: 9px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: white;
-}
-
-.register-4 input[type="number"] {
-    outline: blueviolet;
-}
-
-/*STYLING FOR REGISTER-5*/
-
-.custom-file-input {
-    color: transparent;
-    width: 41%;
-    margin: 2rem auto 0.5rem;
-    display: block;
-}
-
-.custom-file-input::-webkit-file-upload-button {
-    visibility: hidden;
-}
-
-.custom-file-input::before {
-    content: 'Select some photos';
-    color: blueviolet;
-    display: inline-block;
-    background:white;
-    border: 1px solid blueviolet;
-    border-radius: 3px;
-    padding: 5px 8px;
-    outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
-    cursor: pointer;
-    text-shadow: 1px 1px #fff;
-    font-weight: 700;
-    font-size: 10pt;
-    width: 90%;
-    text-align: center;
-}
-
-.custom-file-input:hover::before {
-    border-color: blueviolet;
-}
-
-.custom-file-input:active {
-    outline: 0;
-}
-
-.custom-file-input:active::before {
-    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-}
-
-input[type="submit"] {
-    font-weight: bold;
-    width: 50%;
-    display: block;
-    height: 3rem;
-    margin: 3rem auto;
-    background-color: blueviolet;
-    border: none;
-    color: white;
-}
-
-@media screen and (min-width: 700px) {
-    .two-column{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media screen and (min-width: 1920px) {
-    body{
-        background: url(./Images/couple-bg.svg) no-repeat center center fixed;
-        background-size: cover;
-    }
-
-    form{
-        width: 633px;
-    }
-
-    main{
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .register-2 legend{
-        text-align: left;
-        font-size: 1.5rem;
-    }
-
-    input[type="text"]{
-        text-align: left;
-    }
-}
+/*createAccount2 Styling*/
