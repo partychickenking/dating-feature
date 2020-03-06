@@ -1,0 +1,22 @@
+{
+  "name": "datingfeature",
+  "version": "1.0.0",
+  "description": "package voor dating feature",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/partychickenking/datingFeature.git"
+  },
+  "author": "Inju Michorius",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/partychickenking/datingFeature/issues"
+  },
+  "homepage": "https://github.com/partychickenking/datingFeature#readme",
+  "dependencies": {
+    "camelcase": "^5.3.1"
+  }
+}

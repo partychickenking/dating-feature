@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300" viewBox="0 0 300 300">
+  <defs>
+    <clipPath id="clip-custom_2">
+      <rect width="300" height="300"/>
+    </clipPath>
+  </defs>
+  <g id="custom_2" data-name="custom – 2" clip-path="url(#clip-custom_2)">
+    <rect width="300" height="300" fill="#fff"/>
+    <g id="Group_1" data-name="Group 1" transform="translate(90 0.088)">
+      <g id="Group_6" data-name="Group 6" transform="translate(0 57.233)">
+        <path id="Path_1" data-name="Path 1" d="M92.694,109.31H28.627A28.248,28.248,0,0,0,.44,137.354L0,224.858a11.911,11.911,0,0,0,11.85,11.971h.062a11.912,11.912,0,0,0,11.909-11.85l.44-87.5v-.03a2.362,2.362,0,0,1,4.724.028L28.991,337.7a14.293,14.293,0,0,0,28.586,0V223.454h6.171V337.7a14.292,14.292,0,0,0,28.585,0c0-188.931-.253-80.888-.259-200.048a2.5,2.5,0,0,1,4.985-.2h0l-.081,87.454a11.911,11.911,0,0,0,11.9,11.922h.011a11.911,11.911,0,0,0,11.91-11.9l.081-87.5c0-.025,0-.047,0-.072A28.248,28.248,0,0,0,92.694,109.31Z" transform="translate(0 -109.31)" fill="#ff9678"/>
+      </g>
+      <g id="Group_8" data-name="Group 8" transform="translate(35.979)">
+        <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="24.682" cy="24.682" rx="24.682" ry="24.682" fill="#ff9678"/>
+      </g>
+    </g>
+  </g>
+</svg>
