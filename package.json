@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/partychickenking/datingFeature.git"
+    "url": "git+https://github.com/partychickenking/dating-feature.git"
   },
   "author": "Inju Michorius",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/partychickenking/datingFeature/issues"
+    "url": "https://github.com/partychickenking/dating-feature/issues"
   },
-  "homepage": "https://github.com/partychickenking/datingFeature#readme",
+  "homepage": "https://github.com/partychickenking/dating-feature#readme",
   "dependencies": {
     "camelcase": "^5.3.1"
   }
