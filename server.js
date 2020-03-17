@@ -3,84 +3,33 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const port = 3000;
-const mongo = require('mongodb').MongoClient;
+const mongo = require('mongodb');
 const assert = require('assert');
 const bodyParser = require('body-parser');
 
-async function main() {
-    /**
-     * Connection URI. Update <username>, <password>, and <your-cluster-url> to reflect your cluster.
-     * See https://docs.mongodb.com/ecosystem/drivers/node/ for more details
-     */
-    const uri = "mongodb+srv://Inju:Kato1234!@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority";
+require('dotenv').config();
 
-    /**
-     * The Mongo Client you will use to interact with your database
-     * See https://mongodb.github.io/node-mongodb-native/3.3/api/MongoClient.html for more details
-     */
-    const client = new mongo(uri);
+let db = null;
+let url = "mongodb+srv://Inju:Kato1234!@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority";
 
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
-
-        // Make the appropriate DB calls
-        await listDatabases(client);
-
-    } catch (e) {
-        console.error(e);
-    } finally {
-        // Close the connection to the MongoDB cluster
-        await client.close();
+mongo.MongoClient.connect(url, function(err, client){
+    if (err) {
+        throw err
     }
+    db = client.db(process.env.DB_NAME)
+})
+
+function add(req, res){
+    const id = slug(req.body.title).toLowerCase()
+
+    movies.push({
+        id: id,
+        title : req.body.title,
+        plot : req.body.plot,
+        description : req.body.description
+    });
+    res.redirect('/' + id)
 }
-
-main().catch(console.error);
-
-/**
- * Print the names of all available databases
- * @param {mongo} client A MongoClient that is connected to a cluster
- */
-async function listDatabases(client) {
-    databasesList = await client.db().admin().listDatabases();
-
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
-
-app.get('/get-data', function(req, res, next) {
-    var resultArray = [];
-    mongo.connect(uri, function(err, db) {
-        assert.equal(null, err);
-        var cursor = db.collection('register').find();
-        cursor.forEach(function(doc, err) {
-            assert.equal(null, err)
-            resultArray.push(doc);
-        }, function() {
-            db.close();
-            res.render('index', {items: resultArray});
-        });
-    });
-});
-
-app.post('/insert', function(req, res, next) {
-    var item = {
-        username: req.body.username,
-        email: req.body.email,
-        ww: req.body.ww
-    };
-
-    mongo.connect(uri, function(err, db) {
-        assert.equal(null, err);
-        db.collection('register').insertOne(item, function(err, result) {
-            assert.equal(null, err);
-            console.log('Item inserted');
-            db.close();
-        });
-
-    });
-});
-
 
 
 
