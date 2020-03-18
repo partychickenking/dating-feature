@@ -1,0 +1,13 @@
+<body>
+    <h1>Results: </h1>
+
+    <a href="/filter">Add filters</a>
+
+    <% for (var index = 0; index < data.length; index++) { %>
+
+        <section>
+            <h2> <%= data[index].username %></h2>
+            <p> <%= data[index].password %></p>
+        </section>
+    <% } %>
+</body>
