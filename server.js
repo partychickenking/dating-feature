@@ -4,16 +4,19 @@ const app = express();
 const path = require('path');
 const port = 3000;
 const mongo = require('mongodb');
-const assert = require('assert');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const slug = require('slug');
 
 require('dotenv').config()
 
 var db = null
 var url = 'mongodb+srv://asd123:asd123@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
 
+
+
+app.use(bodyParser.urlencoded({ extended: false }))
 
 mongo.MongoClient.connect(url, function (err, client) {
     if (err) {
@@ -31,7 +34,6 @@ app.set('views', 'view')
 app.set('view engine', 'ejs')
 
 //stuurt text naar een bepaald pad
-app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/about', (req, res) => res.send('about'));
 app.get('/contact', (req, res) => res.send('Dit is de contact'));
 
@@ -46,7 +48,6 @@ app.get('/dynamic', (req, res) => {
 
 app.get('/movies', movies)
 
-
 function movies(req, res, next) {
     db.collection('register').find().toArray(done)
 
@@ -60,5 +61,22 @@ function movies(req, res, next) {
     }
 }
 
+app.get('/add', form)
+
+function form(req, res) {
+    res.render('add.ejs')
+}
+
+app.post('/', add)
+
+function add(req, res) {
+
+    data.push({
+        username: req.body.username,
+        password: req.body.password
+    })
+
+    res.redirect('/' + id)
+}
 
 app.listen(port, () => console.log(cc(`Example app listening on port ${port}!`)));
