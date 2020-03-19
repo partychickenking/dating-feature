@@ -74,7 +74,9 @@ app.post('/', add)
 function add(req, res, next) {
     db.collection('register').insertOne({
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        male: req.body.male,
+        female: req.body.female
     }, done)
 
     function done(err, data) {
