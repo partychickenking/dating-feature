@@ -11,6 +11,8 @@ const slug = require('slug');
 
 require('dotenv').config()
 
+let data = [];
+
 var db = null
 var url = 'mongodb+srv://asd123:asd123@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
 
@@ -69,14 +71,19 @@ function form(req, res) {
 
 app.post('/', add)
 
-function add(req, res) {
-
-    data.push({
+function add(req, res, next) {
+    db.collection('register').insertOne({
         username: req.body.username,
         password: req.body.password
-    })
+    }, done)
 
-    res.redirect('/' + id)
+    function done(err, data) {
+        if (err) {
+            next(err)
+        } else {
+            res.redirect('/')
+        }
+    }
 }
 
 app.listen(port, () => console.log(cc(`Example app listening on port ${port}!`)));
