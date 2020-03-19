@@ -41,7 +41,7 @@ app.get('/contact', (req, res) => res.send('Dit is de contact'));
 
 
 //dirname staat voor het pad waar je op dat moment bent, en stuurt een statische pagina
-app.get('/register', (req, res) => res.sendFile(path.join(__dirname + '/static/registreren.html')));
+app.get('/dirname', (req, res) => res.sendFile(path.join(__dirname + '/static/registreren.html')));
 
 //dynamische pagina waarbij je gebruikt maakt van objects
 app.get('/dynamic', (req, res) => {
@@ -63,20 +63,43 @@ function movies(req, res, next) {
     }
 }
 
-app.get('/add', form)
 
-function form(req, res) {
-    res.render('add.ejs')
-}
+app.get('/register', (req, res) => res.sendFile(path.join(__dirname + '/static/registreren.html')));
 
-app.post('/', add)
 
-function add(req, res, next) {
+app.post('/', register)
+
+function register(req, res, next) {
     db.collection('register').insertOne({
         username: req.body.username,
+        email: req.body.email,
         password: req.body.password,
+        giveacces: req.body.giveacces,
+        denyacces: req.body.denyacces,
         male: req.body.male,
-        female: req.body.female
+        female: req.body.female,
+        other: req.body.other,
+        age: req.body.age,
+        straight: req.body.straight,
+        gay: req.body.gay,
+        bi: req.body.bi,
+        othersexuality: req.body.othersexuality,
+        action: req.body.action,
+        comedy: req.body.comedy,
+        horror: req.body.horror,
+        fantasy: req.body.fantasy,
+        thriller: req.body.thriller,
+        romantic: req.body.romantic,
+        drama: req.body.drama,
+        docu: req.body.docu,
+        pop: req.body.pop,
+        hiphop: req.body.hiphop,
+        rock: req.body.rock,
+        dance: req.body.dance,
+        rap: req.body.rap,
+        jazz: req.body.jazz,
+        metal: req.body.metal,
+        classic: req.body.classic
     }, done)
 
     function done(err, data) {
