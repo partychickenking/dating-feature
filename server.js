@@ -66,7 +66,6 @@ function movies(req, res, next) {
 
 app.get('/register', (req, res) => res.sendFile(path.join(__dirname + '/static/registreren.html')));
 
-
 app.post('/', register)
 
 function register(req, res, next) {
