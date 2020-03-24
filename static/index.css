@@ -489,19 +489,26 @@ input[type="submit"] {
 
 @media screen and (min-width: 1200px) {
     body{
-        background: url(./Images/couple-bg.svg) no-repeat center center fixed;
+        background: url(../Images/couple-bg.jpg) no-repeat center center fixed;
         background-size: cover;
     }
 
     form{
+        padding-top: 48px;
         width: 33%;
-        background-color: white;
+        background: white;
+        height: 100vh;
     }
 
     legend{
         font-size: 18px;
         padding-bottom: 0;
     }
+
+    h1 {
+        margin-top: 0;
+    }
+
 
     .invoer-veld{
         margin: 0.4rem auto;
@@ -513,11 +520,6 @@ input[type="submit"] {
 
     .register-2, .register-3 legend, .register-4 legend{
         display: none;
-    }
-
-    main{
-        display: flex;
-        justify-content: flex-end;
     }
 
     .register-2 legend{
@@ -543,5 +545,10 @@ input[type="submit"] {
 
     .register-2 .container, .register-3 .container, .register-4 .container{
         font-size: 16px;
+    }
+
+    .register-5 {
+        background-color: white;
+        margin: 0 0 0 auto;
     }
 }
