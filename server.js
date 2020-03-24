@@ -11,10 +11,11 @@ const slug = require('slug');
 
 require('dotenv').config()
 
+
 let data = [];
 
 var db = null
-var url = 'mongodb+srv://asd123:asd123@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
+var url = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
 
 
 
