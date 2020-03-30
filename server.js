@@ -4,29 +4,49 @@ const path = require('path');
 const port = 3000;
 const mongo = require('mongodb');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const user = require('./models/User');
 
+//Configurates the .env file and loads it in
 require('dotenv').config()
 
 
-let data = [];
+app.post('/createUser', async (req, res, next) => {
+    try {
+     const user = await User.create(req.body);
+     // statuscode 201 wanneer je een nieuw record aanmaakt.
+     return res.status(201).send('created user');
+    } catch(err) {
+       return res.status(err.status).send('error', err);
+      }
+});
+
+
 
 const db = null
 
 //Link to MY database using .env for security
-const url = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
+const url = 'mongodb+srv://Inju:Kato1234!@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
 
 
-
+//URL-encoded data will be parsed with the qs library. Extended means it allows 'rich' opjects like { person: { name: 'bobby', age: '3' }
 app.use(bodyParser.urlencoded({ extended: false }))
 
 //Connection to database
-mongo.MongoClient.connect(url, function (err, client) {
-    if (err) {
-        throw err
+const connectDB = async () => {
+    try {
+      const connection = await mongoose.connect(url, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
+      });
+      console.log(`MongoDB connected: ${connection.connection.host}`);
+    } catch(err) {
+        console.log('error', err);
+        throw err;
     }
-
-    db = client.db(process.env.DB_NAME)
-})
+  };
 
 //Tells express where to look for files
 app.use('/static', express.static('static'));
