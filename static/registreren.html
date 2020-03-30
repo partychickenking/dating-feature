@@ -9,7 +9,7 @@
 
 <body>
     <main>
-        <form action="/" method="POST">
+        <form action="/register" method="POST">
             <fieldset class="register-1">
                 <legend>Welcome!</legend>
                 <p>First, we would like to have some contact information</p>
@@ -175,13 +175,14 @@
             <fieldset class="register-5">
                 <legend>Upload some cute pictures of you</legend>
                 <label for="file-upload">
-                    <input type="file" class="custom-file-input">
+                    <input type="file" class="custom-file-input" name="uploadImage">
                 </label>
                 <input type="submit">
             </fieldset>
         </form>
+        <div class="next-btn"></div>
     </main>
-    <script src="index.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>

@@ -551,4 +551,8 @@ input[type="submit"] {
         background-color: white;
         margin: 0 0 0 auto;
     }
+
+    .toggle {
+        transform: translateX(50%);
+    }
 }

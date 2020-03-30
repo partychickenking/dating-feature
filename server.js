@@ -1,26 +1,25 @@
-const cc = require('camelcase');
 const express = require('express');
 const app = express();
 const path = require('path');
 const port = 3000;
 const mongo = require('mongodb');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const multer = require('multer');
-const slug = require('slug');
 
 require('dotenv').config()
 
 
 let data = [];
 
-var db = null
-var url = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
+const db = null
+
+//Link to MY database using .env for security
+const url = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
 
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
+//Connection to database
 mongo.MongoClient.connect(url, function (err, client) {
     if (err) {
         throw err
@@ -29,45 +28,21 @@ mongo.MongoClient.connect(url, function (err, client) {
     db = client.db(process.env.DB_NAME)
 })
 
+//Tells express where to look for files
 app.use('/static', express.static('static'));
 app.use(express.static('static'))
 
-//wordt gebruikt voor templating
+
+//Tells what templating engine to use and where to find the files
 app.set('views', 'view')
 app.set('view engine', 'ejs')
 
-//stuurt text naar een bepaald pad
-app.get('/about', (req, res) => res.send('about'));
-app.get('/contact', (req, res) => res.send('Dit is de contact'));
-
-
-//dirname staat voor het pad waar je op dat moment bent, en stuurt een statische pagina
-app.get('/dirname', (req, res) => res.sendFile(path.join(__dirname + '/static/registreren.html')));
-
-//dynamische pagina waarbij je gebruikt maakt van objects
-app.get('/dynamic', (req, res) => {
-    res.render('index', { data: movie })
-})
-
-app.get('/movies', )
-
-function movie(req, res, next) {
-    db.collection('register').find().toArray(done)
-
-    function done(err, data) {
-        if (err) {
-            next(err)
-        } else {
-
-            res.render('list.ejs', { data: data })
-        }
-    }
-}
-
-
+//Sends register.html to the user when /register is called
 app.get('/register', (req, res) => res.sendFile(path.join(__dirname + '/static/registreren.html')));
 
-app.post('/', register)
+//Posts 
+app.post('/register', register)
+
 
 function register(req, res, next) {
     db.collection('register').insertOne({
@@ -91,4 +66,25 @@ function register(req, res, next) {
     }
 }
 
-app.listen(port, () => console.log(cc(`Example app listening on port ${port}!`)));
+app.post('/login', login);
+
+function login (req, res){
+    db.collection('register')
+        .findOne({
+            username: req.body.username,
+            password: req.body.password
+    })
+    .then(data=> {
+            console.log('Ingelogd!');
+            if (data){
+                res.redirect('/profile');
+        }
+    })
+    .catch(err=>{
+        console.log(err);
+        res.redirect('404error');
+    });
+}
+
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
