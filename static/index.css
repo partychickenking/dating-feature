@@ -553,6 +553,6 @@ input[type="submit"] {
     }
 
     .toggle {
-        transform: translateX(-100%);
+        transform: translate(-100%, -100%);
     }
 }
