@@ -5,10 +5,9 @@ const port = 3000;
 const mongo = require('mongodb');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const slug = require('slug');
 
 require('dotenv').config()
-
-let data = [];
 
 var db = null
 var url = 'mongodb+srv://asd123:asd123@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
@@ -68,22 +67,34 @@ function register(req, res, next) {
     }
 }
 
-app.get('/users', (req, res)=>{
-    res.render('list');
+app.get('/users', (req, res) => {
+    res.render('list', { data: gebruikers });
 })
 
-app.post('/list', users)
+let gebruikers = 'important info men'
 
-function users(req, res, next) {
-    db.collection('register').find().toArray(done)
-  
-    function done(err, data) {
-      if (err) {
-        next(err)
-      } else {
-        res.render('list.ejs', {data: data})
-      }
-    }
+app.post('/users', users)
+
+function users(req, res) {
+    var id = slug(req.body.title)
+
+    data.push({
+        id: id,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        locationAcces: req.body.locationAcces,
+        gender: req.body.gender,
+        age: req.body.age,
+        sexuality: req.body.sexuality,
+        movies: req.body.movies,
+        music: req.body.music
+    })
+
+    res.redirect('/' + id)
 }
 
+let data = [];
+
+console.log(data)
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
