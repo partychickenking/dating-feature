@@ -31,15 +31,15 @@ btn.style.width = "10rem";
 btn.style.height = "3rem";
 btn.style.backgroundColor = "#8A2BE2";
 btn.style.position = "fixed";
-btn.style.transform = "translate(-50%)"
+btn.style.top = "0";
 btn.style.content = "Next";
 btn.style.cursor = "pointer";
 
 
 
 btn.addEventListener("click", function () {
-    register1.classList.toggle("toggle");
-})
+    register2.classList.toggle("toggle");
+});
 
 
 console.log('Check');

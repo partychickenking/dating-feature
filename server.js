@@ -1,5 +1,109 @@
 const express = require('express');
 const app = express();
+const router = express.Router();
+const path = require('path');
+const port = 3000;
+const mongo = require('mongodb');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const User = require('./models/User');
+
+//Configurates the .env file and loads it in
+require('dotenv').config()
+
+const db = null
+
+//Link to MY database using .env for security
+const url = 'mongodb+srv://Inju:Kato1234!@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
+
+//URL-encoded data will be parsed with the qs library. Extended means it allows 'rich' opjects like { person: { name: 'bobby', age: '3' }
+app.use(bodyParser.urlencoded({ extended: false }))
+
+//Connection to database
+const connectDB = async () => {
+    try {
+      const connection = await mongoose.connect(url, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
+      });
+      console.log(`MongoDB connected: ${connection.connection.host}`);
+    } catch(err) {
+        console.log('error', err);
+        throw err;
+    }
+};
+
+//Tells what templating engine to use and where to find the files
+app.set('views', 'view')
+app.set('view engine', 'ejs')
+
+//
+app.get('/', function(req, res, next) {
+    res.render('register');
+});
+
+router.post('/login', function(req, res) {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.findOne({username: username, password: password}, function(err, User) {
+        if(err) {
+            console.log(err);
+            return res.status(500).send();
+        }
+
+        if(!User) {
+            return res.status(404).send();
+        };
+
+        return res.status(200).send();
+    });
+});
+
+//
+router.post('/register', function(req, res) {
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+    const locationAcces = req.body.locationAcces;
+    const gender = req.body.gender;
+    const age = req.body.age;
+    const sexuality = req.body.sexuality;
+    const movies = req.body.movies;
+    const music = req.body.music;
+
+    const newUser = new User();
+    newUser.username = username;
+    newUser.email = email;
+    newUser.password = password;
+    newUser.locationAcces = locationAcces;
+    newUser.gender = gender;
+    newUser.age = age;
+    newUser.sexuality = sexuality;
+    newUser.movies = movies;
+    newUser.music = music;
+    newUser.save(function(err, savedUser) {
+        if(err) {
+            console.log(err);
+            return res.status(500).send();
+        }
+
+        return res.status(200).send();
+    });
+});
+
+module.exports = router;
+
+
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+/*CODE
+
+const express = require('express');
+const app = express();
 const path = require('path');
 const port = 3000;
 const mongo = require('mongodb');
@@ -107,4 +211,4 @@ function login (req, res){
 }
 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));*/
