@@ -75,6 +75,20 @@ const data = [
     }
 ]
 
+app.post('/', add)
+
+function add(req, res) {
+    var id = slug(req.body.title).toLowerCase()
+  
+    data.push({
+      id: id,
+      title: req.body.title,
+      plot: req.body.plot,
+      description: req.body.description
+    })
+  
+    res.redirect('/' + id)
+  }
 
 
 
