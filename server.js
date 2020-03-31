@@ -9,12 +9,8 @@ const slug = require('slug');
 
 require('dotenv').config()
 
-var db = null
+//Link to DB
 var url = 'mongodb+srv://asd123:asd123@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
-
-
-
-app.use(bodyParser.urlencoded({ extended: false }))
 
 //Connection to DB
 mongo.MongoClient.connect(url, function (err, client) {
@@ -25,6 +21,8 @@ mongo.MongoClient.connect(url, function (err, client) {
     db = client.db(process.env.DB_NAME)
 })
 
+//App use
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/static', express.static('static'));
 app.use(express.static('static'))
 
@@ -37,12 +35,7 @@ app.set('view engine', 'ejs')
 app.get('/login', (req, res) => res.sendFile(path.join(__dirname + '/static/index.html')));
 app.get('/register', (req, res) => res.sendFile(path.join(__dirname + '/static/registreren.html')));
 
-//dynamische pagina waarbij je gebruikt maakt van objects
-app.get('/dynamic', (req, res) => {
-    res.render('index', { data: movies })
-})
-
-
+//App post
 app.post('/register', register)
 
 function register(req, res, next) {
@@ -66,35 +59,23 @@ function register(req, res, next) {
         }
     }
 }
+//------------------------TEST------------------------
+const data = [
+    {
+      id: 'evil-dead',
+      title: 'Evil Dead',
+      plot: 'Five friends travel to a cabin in the …',
+      description: 'Five friends head to a remote …'
+    },
+    {
+      id: 'the-shawshank-redemption',
+      title: 'The Shawshank Redemption',
+      plot: 'Two imprisoned men bond over a number …',
+      description: 'Andy Dufresne is a young and  …'
+    }
+]
 
-app.get('/users', (req, res) => {
-    res.render('list', { data: gebruikers });
-})
 
-let gebruikers = 'important info men'
 
-app.post('/users', users)
 
-function users(req, res) {
-    var id = slug(req.body.title)
-
-    data.push({
-        id: id,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        locationAcces: req.body.locationAcces,
-        gender: req.body.gender,
-        age: req.body.age,
-        sexuality: req.body.sexuality,
-        movies: req.body.movies,
-        music: req.body.music
-    })
-
-    res.redirect('/' + id)
-}
-
-let data = [];
-
-console.log(data)
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

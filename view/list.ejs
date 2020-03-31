@@ -1,1 +1,12 @@
-<h1>This is what you send: <%= data %></h1>
+<!doctype html>
+<link rel=stylesheet href=/index.css>
+<title>Movies - My movie website</title>
+<h1>Movies</h1>
+<% for (var index = 0; index < data.length; index++) { %>
+  <h2>
+    <a href="/<%= data[index].id %>">
+      <%= data[index].title %>
+    </a>
+  </h2>
+  <p><%= data[index].plot %></p>
+<% } %>
