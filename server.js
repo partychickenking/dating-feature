@@ -62,16 +62,16 @@ function register(req, res, next) {
 //------------------------TEST------------------------
 const data = [
     {
-      id: 'evil-dead',
-      title: 'Evil Dead',
-      plot: 'Five friends travel to a cabin in the …',
-      description: 'Five friends head to a remote …'
+        id: 'evil-dead',
+        title: 'Evil Dead',
+        plot: 'Five friends travel to a cabin in the …',
+        description: 'Five friends head to a remote …'
     },
     {
-      id: 'the-shawshank-redemption',
-      title: 'The Shawshank Redemption',
-      plot: 'Two imprisoned men bond over a number …',
-      description: 'Andy Dufresne is a young and  …'
+        id: 'the-shawshank-redemption',
+        title: 'The Shawshank Redemption',
+        plot: 'Two imprisoned men bond over a number …',
+        description: 'Andy Dufresne is a young and  …'
     }
 ]
 
@@ -84,22 +84,32 @@ function form(req, res) {
 //List of things you've filled in
 app.get('/list', list)
 function list(req, res) {
-    res.render('list.ejs', {data: data})
+    res.render('list.ejs', { data: data })
 }
 
 app.post('/', add)
 
 function add(req, res) {
-  
-    data.push({
-      title: req.body.title,
-      plot: req.body.plot,
-      description: req.body.description
-    })
-  
-    res.redirect('list')
-  }
 
+    const id = slug(req.body.title).toLowerCase()
+
+    data.push({
+        id: id,
+        title: req.body.title,
+        plot: req.body.plot,
+        description: req.body.description
+    })
+
+    res.redirect('list')
+}
+
+app.delete('/remove', remove)
+
+function remove(req, res) {
+    data = data.filter(function (value) {
+        return value
+    })
+}
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
