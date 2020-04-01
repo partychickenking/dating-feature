@@ -76,13 +76,13 @@ const data = [
 ]
 
 
-app.get('/add', idioot)
-app.get('/list', bruv)
+app.get('/add', form)
+app.get('/list', list)
 
-function idioot(req, res) {
+function form(req, res) {
     res.render('add.ejs')
 }
-function bruv(req, res) {
+function list(req, res) {
     res.render('list.ejs', {data: data})
 }
 
