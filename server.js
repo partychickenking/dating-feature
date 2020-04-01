@@ -89,7 +89,6 @@ function list(req, res) {
 app.post('/', add)
 
 function add(req, res) {
-    var id = slug(req.body.title).toLowerCase()
   
     data.push({
       id: id,
