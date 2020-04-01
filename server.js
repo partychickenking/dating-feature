@@ -75,6 +75,17 @@ const data = [
     }
 ]
 
+
+app.get('/add', idioot)
+app.get('/list', bruv)
+
+function idioot(req, res) {
+    res.render('add.ejs')
+}
+function bruv(req, res) {
+    res.render('list.ejs', {data: data})
+}
+
 app.post('/', add)
 
 function add(req, res) {
@@ -87,7 +98,7 @@ function add(req, res) {
       description: req.body.description
     })
   
-    res.redirect('/' + id)
+    res.redirect('list')
   }
 
 
