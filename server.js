@@ -103,12 +103,17 @@ function add(req, res) {
     res.redirect('list')
 }
 
-app.delete('/remove', remove)
+app.delete('/:id', remove)
 
 function remove(req, res) {
+
+    const id = req.params.id
+
     data = data.filter(function (value) {
-        return value
+        return value.id !== id
     })
+
+    res.json({status: 'ok'})
 }
 
 
