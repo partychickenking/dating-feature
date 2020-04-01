@@ -116,5 +116,17 @@ function remove(req, res) {
     res.json({status: 'ok'})
 }
 
+function movies(req, res, next) {
+    db.collection('movie').find().toArray(done)
+  
+    function done(err, data) {
+      if (err) {
+        next(err)
+      } else {
+        res.render('list.ejs', {data: data})
+      }
+    }
+  }
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
