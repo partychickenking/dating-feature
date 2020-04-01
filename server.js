@@ -91,7 +91,6 @@ app.post('/', add)
 function add(req, res) {
   
     data.push({
-      id: id,
       title: req.body.title,
       plot: req.body.plot,
       description: req.body.description
