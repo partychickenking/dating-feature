@@ -75,13 +75,14 @@ const data = [
     }
 ]
 
-
+//Form to fill in
 app.get('/add', form)
-app.get('/list', list)
-
 function form(req, res) {
     res.render('add.ejs')
 }
+
+//List of things you've filled in
+app.get('/list', list)
 function list(req, res) {
     res.render('list.ejs', {data: data})
 }
