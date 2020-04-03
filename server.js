@@ -111,7 +111,7 @@ function list(req, res, next) {
             next(err)
         } else {
             console.log(data)
-            res.render('list.ejs', { data: data })
+            res.render('list.ejs', { data })
         }
     }
 }
