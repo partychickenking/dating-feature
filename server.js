@@ -55,7 +55,8 @@ function register(req, res, next) {
         if (err) {
             next(err)
         } else {
-            res.redirect('/')
+            req.session.user = {username: username}
+            res.redirect('/list')
         }
     }
 }
@@ -64,12 +65,12 @@ function register(req, res, next) {
 app.get('/newUser', newUser);
 
 function newUser(req, res) {
-    res.render('add.ejs')
+    res.render('register.ejs')
 }
 
 //Show all username and passwords
-app.get('/users', users)
-function users(req, res, next) {
+app.get('/allusers', allUsers)
+function allUsers(req, res, next) {
     db.collection('register').find({}).toArray(done)
 
     function done(err, data) {
@@ -77,17 +78,20 @@ function users(req, res, next) {
             next(err)
         } else {
             console.log(data)
-            res.render('user.ejs', { data })
+            res.render('allusers.ejs', { data })
         }
     }
 }
 
 //------------------------------------SESSIONS------------------------------------
+// Initializing sessions
 app.use(session({
     resave: false,
     saveUninitialized: true,
     secret: process.env.SESSION_SECRET
-}))
+}));
+
+//
 
 
 
