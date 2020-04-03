@@ -4,8 +4,7 @@ const path = require('path');
 const port = 3000;
 const mongo = require('mongodb');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const slug = require('slug');
+const session = require('express-session');
 
 require('dotenv').config()
 
@@ -59,14 +58,15 @@ function register(req, res, next) {
         }
     }
 }
-//------------------------TEST------------------------
+
+//Add user
 app.get('/newUser', newUser);
 
 function newUser(req, res) {
     res.render('add.ejs')
 }
 
-
+//Show all username and passwords
 app.get('/users', users)
 function users(req, res, next) {
     db.collection('register').find({}).toArray(done)
