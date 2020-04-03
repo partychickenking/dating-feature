@@ -60,20 +60,6 @@ function register(req, res, next) {
     }
 }
 //------------------------TEST------------------------
-const data = [
-    {
-        id: 'evil-dead',
-        title: 'Evil Dead',
-        plot: 'Five friends travel to a cabin in the …',
-        description: 'Five friends head to a remote …'
-    },
-    {
-        id: 'the-shawshank-redemption',
-        title: 'The Shawshank Redemption',
-        plot: 'Two imprisoned men bond over a number …',
-        description: 'Andy Dufresne is a young and  …'
-    }
-]
 
 //Form to fill in
 app.get('/add', form)
@@ -81,29 +67,8 @@ function form(req, res) {
     res.render('add.ejs')
 }
 
-//List of things you've filled in
-function movies(req, res) {
-    res.render('list.ejs', { data: data })
-}
-
-app.post('/', add)
-
-function add(req, res) {
-
-    const id = slug(req.body.title).toLowerCase()
-
-    data.push({
-        id: id,
-        title: req.body.title,
-        plot: req.body.plot,
-        description: req.body.description
-    })
-
-    res.redirect('list')
-}
-
-app.get('/list', list)
-function list(req, res, next) {
+app.get('/users', users)
+function uesers(req, res, next) {
     db.collection('register').find({}).toArray(done)
 
     function done(err, data) {
@@ -111,7 +76,7 @@ function list(req, res, next) {
             next(err)
         } else {
             console.log(data)
-            res.render('list.ejs', { data })
+            res.render('user.ejs', { data })
         }
     }
 }
