@@ -22,16 +22,6 @@ mongo.MongoClient.connect(url, {useUnifiedTopology: true}, function (err, client
 })
 
 
-
-
-
-const users = [
-    {id: 1, name: 'Inju', email: 'inju@inju.nl', password: 'secret'},
-    {id: 2, name: 'Anna', email: 'anna@anna.nl', password: 'secret'},
-    {id: 3, name: 'Nina', email: 'nina@nina.nl', password: 'secret'}
-]
-
-
 //App use
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/static', express.static('static'));
@@ -52,83 +42,56 @@ app.use(session({
 app.set('views', 'view')
 app.set('view engine', 'ejs')
 
-app.get('/', (req, res) => {
-    const { userId } = req.session
-    res.render('index')
-})
-
-app.get('/home', (req, res) => {
-    res.render('home')
-;})
-
+//Routes
 app.get('/login', (req, res) => {
     res.render('login')
-
 })
-
 app.get('/register', (req, res) => {
     res.render('register.ejs')
 })
-
-app.get('/logout', (req, res) => {
-    res.render('register')
+app.get('/home', (req, res) => {
+    res.render('home')
 })
 
-//Post requests
-app.post('/register', (req, res) => {
-    const { username, email, password} = req.body
-    
-    if (username && email && password ) {
-        const exist = users.some(
-            user => user.email === email
-        )
 
-        if (!exist) {
-            const user = {
-                id: users.length + 1,
-                name,
-                email,
-                password
-            }
+//Function that sents data from form to DB
+app.post('/register', register)
+function register(req, res, next) {
+    db.collection('register').insertOne({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+    }, done)
 
-            users.push(user)
-
-            req.session.userId = user.id
-
-            return res.redirect('/home', { users })
+    function done(err, data) {
+        if (err) {
+            next(err)
+        } else {
+            res.redirect('/login')
         }
     }
+}
 
-    res.redirect('/register')
 
-})
-app.post('/login', (req, res) => {
-    const { email, password } = req.body
+//Function that validates
+app.post('/login', login)
+function login(req, res, next) {
+    db.collection('register').find({}).toArray(done)
 
-    if (email && password) {
-        const user = users.find(
-            user => user.email === email && user.password === password
-        )
-
-        if (user) {
-            req.session.userId = user.id
-            return res.redirect('/home')
+    function done(err, user) {
+        if (err) {
+            next(err)
+        } else {
+            res.render('home.ejs', { user })
         }
     }
-    res.redirect('login')
+}
 
-})
-app.post('/logout', (req, res) => {
-    req.session.destroy(err => {
-        if(err) {
-            return res.redirect('/home')
-        }
-
-        res.clearCookie('sid')
-        res.redirect('/login')
-    })
-
-})
-
+//sessions
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+}))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
