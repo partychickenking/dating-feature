@@ -32,8 +32,8 @@ app.set('view engine', 'ejs')
 
 
 //dirname staat voor het pad waar je op dat moment bent, en stuurt een statische pagina
-app.get('/login', (req, res) => res.sendFile(path.join(__dirname + '/static/index.html')));
-app.get('/register', (req, res) => res.sendFile(path.join(__dirname + '/static/registreren.html')));
+app.get('/htmllogin', (req, res) => res.sendFile(path.join(__dirname + '/static/index.html')));
+app.get('/htmlregister', (req, res) => res.sendFile(path.join(__dirname + '/static/registreren.html')));
 
 //App post
 app.post('/register', register)
