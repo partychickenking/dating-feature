@@ -103,21 +103,8 @@ function add(req, res) {
     res.redirect('list')
 }
 
-app.delete('/:id', remove)
-
-function remove(req, res) {
-
-    const id = req.params.id
-
-    data = data.filter(function (value) {
-        return value.id !== id
-    })
-
-    res.json({status: 'ok'})
-}
-
 function movies(req, res, next) {
-    db.collection('movie').find().toArray(done)
+    db.collection('register').find().toArray(done)
   
     function done(err, data) {
       if (err) {
