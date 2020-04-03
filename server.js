@@ -13,7 +13,7 @@ require('dotenv').config()
 var url = 'mongodb+srv://asd123:asd123@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
 
 //Connection to DB
-mongo.MongoClient.connect(url, {useUnifiedTopology: true}, function (err, client) {
+mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
     if (err) {
         throw err
     }
@@ -63,7 +63,7 @@ function register(req, res, next) {
         password: req.body.password,
     }, done)
 
-    function done(err, data) {
+    function done(err) {
         if (err) {
             next(err)
         } else {
@@ -76,15 +76,28 @@ function register(req, res, next) {
 //Function that validates
 app.post('/login', login)
 function login(req, res, next) {
-    db.collection('register').find({}).toArray(done)
-
-    function done(err, user) {
+    db.collection('register').findOne({ email: req.body.email }, (err, data) => {
         if (err) {
-            next(err)
+            next(err);
         } else {
-            res.render('home.ejs', { user })
+            // if e-mail doesn't exist
+            if (data == null) {
+                res.redirect("/login");
+                console.log("No user for this e-mail")
+                return;
+            }
+            // if e-mail and password match
+            if (req.body.password == data.password) {
+                req.session.user = data;
+                console.log("Logged in as " + req.session.username);
+                res.redirect("/home");
+            } else {
+                // if password is incorrect
+                console.log("Incorrect password");
+                res.redirect("/login");
+            }
         }
-    }
+    })
 }
 
 //sessions
