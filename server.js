@@ -60,15 +60,15 @@ function register(req, res, next) {
     }
 }
 //------------------------TEST------------------------
+app.get('/newUser', newUser);
 
-//Form to fill in
-app.get('/add', form)
-function form(req, res) {
+function newUser(req, res) {
     res.render('add.ejs')
 }
 
+
 app.get('/users', users)
-function uesers(req, res, next) {
+function users(req, res, next) {
     db.collection('register').find({}).toArray(done)
 
     function done(err, data) {
