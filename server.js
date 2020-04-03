@@ -21,79 +21,114 @@ mongo.MongoClient.connect(url, {useUnifiedTopology: true}, function (err, client
     db = client.db(process.env.DB_NAME)
 })
 
+
+
+
+
+const users = [
+    {id: 1, name: 'Inju', email: 'inju@inju.nl', password: 'secret'},
+    {id: 2, name: 'Anna', email: 'anna@anna.nl', password: 'secret'},
+    {id: 3, name: 'Nina', email: 'nina@nina.nl', password: 'secret'}
+]
+
+
 //App use
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/static', express.static('static'));
 app.use(express.static('static'))
+app.use(session({
+    name: 'sid',
+    cookie: {
+        maxAge: 50000,
+        sameSite: true,
+        secure: true
+    },
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.SESSION_SECRET
+}))
 
 //Initializing ejs
 app.set('views', 'view')
 app.set('view engine', 'ejs')
 
+app.get('/', (req, res) => {
+    const { userId } = req.session
+    res.render('index')
+})
 
-//dirname staat voor het pad waar je op dat moment bent, en stuurt een statische pagina
-app.get('/htmllogin', (req, res) => res.sendFile(path.join(__dirname + '/static/index.html')));
-app.get('/htmlregister', (req, res) => res.sendFile(path.join(__dirname + '/static/registreren.html')));
+app.get('/home', (req, res) => {
+    res.render('home')
+;})
 
-//App post
-app.post('/register', register)
+app.get('/login', (req, res) => {
+    res.render('login')
 
-function register(req, res, next) {
-    db.collection('register').insertOne({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        locationAcces: req.body.locationAcces,
-        gender: req.body.gender,
-        age: req.body.age,
-        sexuality: req.body.sexuality,
-        movies: req.body.movies,
-        music: req.body.music
-    }, done)
+})
 
-    function done(err, data) {
-        if (err) {
-            next(err)
-        } else {
-            req.session.user = {username: username}
-            res.redirect('/list')
-        }
-    }
-}
-
-//Add user
-app.get('/newUser', newUser);
-
-function newUser(req, res) {
+app.get('/register', (req, res) => {
     res.render('register.ejs')
-}
+})
 
-//Show all username and passwords
-app.get('/allusers', allUsers)
-function allUsers(req, res, next) {
-    db.collection('register').find({}).toArray(done)
+app.get('/logout', (req, res) => {
+    res.render('register')
+})
 
-    function done(err, data) {
-        if (err) {
-            next(err)
-        } else {
-            console.log(data)
-            res.render('allusers.ejs', { data })
+//Post requests
+app.post('/register', (req, res) => {
+    const { username, email, password} = req.body
+    
+    if (username && email && password ) {
+        const exist = users.some(
+            user => user.email === email
+        )
+
+        if (!exist) {
+            const user = {
+                id: users.length + 1,
+                name,
+                email,
+                password
+            }
+
+            users.push(user)
+
+            req.session.userId = user.id
+
+            return res.redirect('/home', { users })
         }
     }
-}
 
-//------------------------------------SESSIONS------------------------------------
-// Initializing sessions
-app.use(session({
-    resave: false,
-    saveUninitialized: true,
-    secret: process.env.SESSION_SECRET
-}));
+    res.redirect('/register')
 
-//
+})
+app.post('/login', (req, res) => {
+    const { email, password } = req.body
 
+    if (email && password) {
+        const user = users.find(
+            user => user.email === email && user.password === password
+        )
 
+        if (user) {
+            req.session.userId = user.id
+            return res.redirect('/home')
+        }
+    }
+    res.redirect('login')
+
+})
+app.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if(err) {
+            return res.redirect('/home')
+        }
+
+        res.clearCookie('sid')
+        res.redirect('/login')
+    })
+
+})
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
