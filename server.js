@@ -6,6 +6,7 @@ const mongo = require('mongodb');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
+//implementing .env file
 require('dotenv').config()
 
 //Link to DB
@@ -80,6 +81,15 @@ function users(req, res, next) {
         }
     }
 }
+
+//------------------------------------SESSIONS------------------------------------
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: process.env.SESSION_SECRET
+}))
+
+
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
