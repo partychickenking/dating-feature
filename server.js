@@ -13,7 +13,7 @@ require('dotenv').config()
 var url = 'mongodb+srv://asd123:asd123@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
 
 //Connection to DB
-mongo.MongoClient.connect(url, function (err, client) {
+mongo.MongoClient.connect(url, {useUnifiedTopology: true}, function (err, client) {
     if (err) {
         throw err
     }
@@ -82,8 +82,7 @@ function form(req, res) {
 }
 
 //List of things you've filled in
-app.get('/list', list)
-function list(req, res) {
+function movies(req, res) {
     res.render('list.ejs', { data: data })
 }
 
@@ -103,17 +102,19 @@ function add(req, res) {
     res.redirect('list')
 }
 
-function movies(req, res, next) {
-    db.collection('register').find().toArray(done)
-  
+app.get('/list', list)
+function list(req, res, next) {
+    db.collection('register').find({}).toArray(done)
+
     function done(err, data) {
-      if (err) {
-        next(err)
-      } else {
-        res.render('list.ejs', {data: data})
-      }
+        if (err) {
+            next(err)
+        } else {
+            console.log(data)
+            res.render('list.ejs', { data: data })
+        }
     }
-  }
+}
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
