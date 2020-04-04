@@ -5,7 +5,13 @@
     <title>home</title>
 </head>
 <body>
-    <h1>Welcome <%= user.username %></h1>
+    <h1>Welcome <%= user.username %>!</h1>
+    <h2>Account info</h2>
+    <ul>
+        <li>Username: <%= user.username %></li>
+        <li>Email: <%= user.email %></li>
+        <li>Password: <%= user.password %></li>
+    </ul>
     <a href="/login">Back</a>
     
 </body>
