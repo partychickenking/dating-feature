@@ -10,7 +10,7 @@ const session = require('express-session');
 require('dotenv').config()
 
 //Link to DB
-var url = 'mongodb+srv://asd123:asd123@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
+var url = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
 
 //Connection to DB
 mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
@@ -21,22 +21,18 @@ mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (err, clie
     db = client.db(process.env.DB_NAME)
 })
 
+//Initializing sessions
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+}))
 
 //App use
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/static', express.static('static'));
 app.use(express.static('static'))
-app.use(session({
-    name: 'sid',
-    cookie: {
-        maxAge: 50000,
-        sameSite: true,
-        secure: true
-    },
-    resave: false,
-    saveUninitialized: false,
-    secret: process.env.SESSION_SECRET
-}))
+
 
 //Initializing ejs
 app.set('views', 'view')
@@ -50,9 +46,9 @@ app.get('/register', (req, res) => {
     res.render('register.ejs')
 })
 app.get('/home', (req, res) => {
-    res.render('home')
+    let user = req.session.username
+    res.render('home', {user})
 })
-
 
 //Function that sents data from form to DB
 app.post('/register', register)
@@ -80,19 +76,19 @@ function login(req, res, next) {
         if (err) {
             next(err);
         } else {
-            // if e-mail doesn't exist
+            // E-mail does not exist
             if (data == null) {
                 res.redirect("/login");
                 console.log("No user for this e-mail")
                 return;
             }
-            // if e-mail and password match
+            // Email and password are matching
             if (req.body.password == data.password) {
-                req.session.user = data;
+                req.session.username = data;
                 console.log("Logged in as " + req.session.username);
                 res.redirect("/home");
             } else {
-                // if password is incorrect
+                // Password is wrong
                 console.log("Incorrect password");
                 res.redirect("/login");
             }
@@ -100,11 +96,5 @@ function login(req, res, next) {
     })
 }
 
-//sessions
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true
-}))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
