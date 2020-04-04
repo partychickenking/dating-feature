@@ -12,6 +12,11 @@
         <li>Email: <%= user.email %></li>
         <li>Password: <%= user.password %></li>
     </ul>
+    <form action="/update" method="POST">
+        <label for="password">
+            <input type="password" name="password" id="password">
+        </label>
+    </form>
     <a href="/login">Back</a>
     
 </body>

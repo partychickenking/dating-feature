@@ -96,5 +96,19 @@ function login(req, res, next) {
     })
 }
 
+app.post('/update', update)
+function update(req, res, next) {
+    let user = req.session.username
+    console.log(user._id)
+    console.log(user.password)
+
+    db.collection('register').updateOne(
+        {"_id" : mongo.objectId()},
+        {$set : {"password" : "nieuw ww"}}
+    )
+
+
+    res.redirect('/login')
+}
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
