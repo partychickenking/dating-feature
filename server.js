@@ -10,7 +10,8 @@ const session = require('express-session');
 require('dotenv').config()
 
 //Link to DB
-var url = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
+let db = null
+const url = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
 
 //Connection to DB
 mongo.MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
@@ -85,7 +86,7 @@ function login(req, res, next) {
             // Email and password are matching
             if (req.body.password == data.password) {
                 req.session.username = data;
-                console.log("Logged in as " + req.session.username);
+                console.log("Logged in as " + data.username);
                 res.redirect("/home");
             } else {
                 // Password is wrong
@@ -103,11 +104,9 @@ function update(req, res, next) {
     console.log(user.password)
 
     db.collection('register').updateOne(
-        {"_id" : mongo.objectId()},
-        {$set : {"password" : "nieuw ww"}}
+        { _id: mongo.ObjectId(user._id)},
+        {$set: {password: req.body.password }}
     )
-
-
     res.redirect('/login')
 }
 
