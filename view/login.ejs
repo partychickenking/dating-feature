@@ -1,19 +1,26 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="../static/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 
 <body>
-    <h1>Login</h1>
-    <form action="/login" method="POST">
-        <input type="email" name="email" placeholder="email" required>
-        <input type="password" name="password" placeholder="password" required>
-        <input type="submit">
-    </form>
-    <span>Don't have an account? </span><a href="/register">Register</a>
+    <main>
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+            <label for="email">E-mail
+                <input type="email" name="email" placeholder="email" required>
+            </label>
+            <label for="password">Password
+                <input type="password" name="password" placeholder="password" required>
+            </label>
+            <input type="submit">
+            <span>Don't have an account? </span><a href="/register">Register</a>
+        </form>
+    </main>
 </body>
 
 </html>

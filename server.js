@@ -58,6 +58,8 @@ function register(req, res, next) {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
+        gender: req.body.gender,
+        age: req.body.age
     }, done)
 
     function done(err) {

@@ -1,23 +1,30 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
     <title>home</title>
 </head>
+
 <body>
-    <h1>Welcome <%= user.username %>!</h1>
-    <h2>Account info</h2>
-    <ul>
-        <li>Username: <%= user.username %></li>
-        <li>Email: <%= user.email %></li>
-        <li>Password: <%= user.password %></li>
-    </ul>
-    <form action="/update" method="POST">
-        <label for="password">
-            <input type="password" name="password" id="password">
-        </label>
-    </form>
-    <a href="/login">Back</a>
-    
+    <main>
+        <h1>Welcome <%= user.username %>!</h1>
+        <h2>Account info</h2>
+        <ul>
+            <li>Username: <%= user.username %></li>
+            <li>Email: <%= user.email %></li>
+            <li>Password: <%= user.password %></li>
+            <li>Gender: <%= user.gender %></li>
+            <li>Age: <%= user.age %></li>
+        </ul>
+        <form action="/update" method="POST">
+            <label for="password">Change password
+                <input type="password" name="password" id="password">
+            </label>
+        </form>
+    </main>
+
 </body>
+
 </html>

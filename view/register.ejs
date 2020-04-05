@@ -1,29 +1,43 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Register</title>
 </head>
+
 <body>
-    <h1>Register</h1>
-    <form action="/register" method="POST">
-        <label for="username">
-            <input type="text" name="username" placeholder="username" required>
-        </label>
-        <label for="email">
-            <input type="email" name="email" placeholder="email" required>
-        </label>
-        <label for="password">
-            <input type="password" name="password" placeholder="password" required>
-        </label>
-        <label for="gender">
-            <input type="text" name="gender" placeholder="gender" required>
-        </label>
-        <label for="age">
-            <input type="number" name="age" placeholder="age" required>
-        </label>
-        <input type="submit">
-    </form>
-    <a href="/login">Login</a>
+    <main class="register">
+        <h1>Register</h1>
+        <form action="/register" method="POST">
+            <label for="username">Username
+                <input type="text" name="username" placeholder="username" maxlength="20" required>
+            </label>
+            <label for="email">E-mail
+                <input type="email" name="email" placeholder="email" maxlength="20" required>
+            </label>
+            <label for="password">Password
+                <input type="password" name="password" placeholder="password" maxlength="20" required>
+            </label>
+            <div class="radio">
+                <label for="men">Men
+                    <input type="radio" name="gender" placeholder="gender" id="men" value="men" required>
+                </label>
+                <label for="women">Women
+                    <input type="radio" name="gender" placeholder="gender" id="women" value="women" required>
+                </label>
+                <label for="other">Other
+                    <input type="radio" name="gender" placeholder="gender" id="other" value="other" required>
+                </label>
+            </div>
+            <label for="age">Age
+                <input type="number" name="age" placeholder="age" required>
+            </label>
+            <input type="submit">
+            <span>Already have an account? </span><a href="/login">Login</a>
+        </form>
+    </main>
 </body>
+
 </html>
