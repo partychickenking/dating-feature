@@ -11,7 +11,6 @@ const path = require('path');
 require('dotenv').config()
 
 //Link to DB
-let db = null
 const url = 'mongodb+srv://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority'
 
 //Connection to DB
@@ -129,5 +128,16 @@ function update(req, res, next) {
     )
     res.redirect('/login')
 }
+
+app.post('/upload', (req, res) => {
+    upload(req, res, (err) => {
+        if(err){
+            res.render('upload', {msg: err})
+        } else{
+            console.log(req.file)
+            res.send('test')
+        }
+    })
+})
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
