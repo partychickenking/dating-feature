@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const port = 3000;
 const mongo = require('mongodb');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const multer = require('multer');
+const path = require('path');
 
 //implementing .env file
 require('dotenv').config()
@@ -99,6 +100,7 @@ function login(req, res, next) {
     })
 }
 
+//Updates the password
 app.post('/update', update)
 function update(req, res, next) {
     let user = req.session.username
