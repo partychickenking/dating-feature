@@ -19,9 +19,13 @@
             <li>Age: <%= user.age %></li>
         </ul>
         <form action="/update" method="POST">
+            <label for="username">Change username
+                <input type="username" name="username" id="username">
+            </label>
             <label for="password">Change password
                 <input type="password" name="password" id="password">
             </label>
+            <input type="submit">
         </form>
     </main>
 

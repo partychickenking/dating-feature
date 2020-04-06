@@ -98,7 +98,7 @@ function login(req, res, next) {
             // E-mail does not exist
             if (data == null) {
                 res.redirect("/login");
-                console.log("No user for this e-mail")
+                console.log("E-mail not found")
                 return;
             }
             // Email and password are matching
@@ -120,11 +120,10 @@ app.post('/update', update)
 function update(req, res, next) {
     let user = req.session.username
     console.log(user._id)
-    console.log(user.password)
 
     db.collection('register').updateOne(
         { _id: mongo.ObjectId(user._id)},
-        {$set: {password: req.body.password }}
+        {$set: {username: req.body.username, password: req.body.password }}
     )
     res.redirect('/login')
 }
