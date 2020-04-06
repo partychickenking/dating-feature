@@ -30,6 +30,19 @@ app.use(session({
     saveUninitialized: true
 }))
 
+//Set storage engine
+const storage = multer.diskStorage({
+    destination: './static/uploads',
+    filename: function(req, file, cb){
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+//Initializing upload
+const upload = multer({
+    storage: storage
+}).single('photo')
+
 //App use
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/static', express.static('static'));
@@ -50,6 +63,9 @@ app.get('/register', (req, res) => {
 app.get('/home', (req, res) => {
     let user = req.session.username
     res.render('home', {user})
+})
+app.get('/upload', (req, res) => {
+    res.render('upload')
 })
 
 //Function that sents data from form to DB
