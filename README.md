@@ -1,21 +1,9 @@
-# dating-feature
-School project for project tech
-
-README.md files typically include information on:
-
-What the project does
-The features and benefits of the project
-How users can get started with the project
-Where users can get help with your project
-Who maintains and contributes to the project
-
 # Cherish
 Cherish is a dating app feature where users can create an account and log in.
 
 ![cheish](https://user-images.githubusercontent.com/55750126/79575904-ca0bc080-80c2-11ea-9a6f-44d66591c912.jpg)
 
-_When I'm on a dating app, I want to make a profile, so other users know what my interests are. (Inju)_
-
+_**When I'm on a dating app, I want to make a profile, so other users know what my interests are.**_
 ## Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -49,7 +37,7 @@ age: ""
 
 It should look like this in MongoDB Compass
 
-IMAGE!!!!!!!!!
+![image](https://user-images.githubusercontent.com/55750126/79576373-75b51080-80c3-11ea-94ec-cdbd821b0555.png)
 
 ### Test if it works
 
