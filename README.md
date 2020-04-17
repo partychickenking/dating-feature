@@ -21,7 +21,12 @@ You'll need to install the modules. You can do this by running the following lin
 npm install
 ```
 
-### Setting up the database
+## Setting up the database
+To setup the database you'll need to create a new cluster. After you've created a cluser, you can connect with it by clicking connect. Note that you'll have to whitelist your ip. You can do this by going to the network acces tab and choose Add IP adress.
+
+[!connectCluster](https://github.com/partychickenking/partychickenking.github.io/blob/master/image/connectCluster.jpg)
+
+Clicking on connect will give you 3 options. Choose for option 2: Connect your application. Copy the string and paste it in your code. It will probably look something like this: mongodb+srv://[username]:[password]@moa-lfz7p.mongodb.net/test?retryWrites=true&w=majority
 
 This is the structure of the MongoDB Atlas database:
 
