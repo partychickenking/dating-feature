@@ -12,7 +12,7 @@ Who maintains and contributes to the project
 # Cherish
 Cherish is a dating app feature where users can create an account and log in.
 
-IMAGE!!!!!!!!!!!!
+![cheish](https://user-images.githubusercontent.com/55750126/79575904-ca0bc080-80c2-11ea-9a6f-44d66591c912.jpg)
 
 _When I'm on a dating app, I want to make a profile, so other users know what my interests are. (Inju)_
 
